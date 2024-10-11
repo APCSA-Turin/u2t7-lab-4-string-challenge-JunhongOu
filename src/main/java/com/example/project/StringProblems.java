@@ -1,3 +1,4 @@
+package com.example.project;
 public class StringProblems{
     //empty constructor
     public StringProblems(){}
@@ -7,10 +8,22 @@ public class StringProblems{
     // endsLy("oddly") → true
     // endsLy("y") → false
     // endsLy("oddy") → false
-    public boolean endsLy(String x){
-            //implement code here
-        return false;
+     public boolean endsLy(String x){
+         //implement code here
+       
+        int wordLength = x.length();
+         if (x.length()< 2){
+            return false;
+            }
+            String findLy = x.substring(wordLength - 2);
+            if (findLy.equals("ly")){
+                return true;
+            }
+             else{
+                return false;
+           }
     }
+
 
 
     // Given two strings, append them together (known as "concatenation") 
@@ -21,7 +34,16 @@ public class StringProblems{
     // conCat("abc", "") → "abc"
     public String conCat(String s1, String s2){
         //implement code here
-        return "";
+        String s3 = s1 + s2;
+        int fullLength = s3.length();
+        int half = fullLength/2;
+        String letter = s3.substring(half - 1, half);
+        if (letter.equals(s3.substring(half, half + 1))){
+            return s3.substring(0, half) + s3.substring(half + 1, fullLength);
+        }
+        else{
+            return s3;
+        }
     }
 
     // Given a string, return a version without the first 2 chars. 
@@ -35,8 +57,22 @@ public class StringProblems{
     // deFront("abee") -> "abee"
     // deFront("xbring") -> "bring"
     public String deFont(String s1){
+
         //implement code here
-        return "";
+        int firstIndex = s1.indexOf("a");
+        int secondIndex = s1.indexOf("b");
+        int length = s1.length();
+        if (firstIndex == 0 && secondIndex != 1){
+            return s1.substring(0,1) + s1.substring(2, length);
+        }
+        if (firstIndex != 0 && secondIndex == 1){
+            return s1.substring(1,length);
+        }
+        if (firstIndex == 0 && secondIndex == 1){
+            return s1;
+        }
+    
+        return s1.substring(2,length);
     }
 
     
@@ -47,8 +83,24 @@ public class StringProblems{
     // withoutX("xHi") → "Hi"
     // withoutX("Hxix") → "Hxi"
     public String withoutX(String s1){
-        return "";
-    }
+        int totalLength= s1.length() - 1;
+        int frontLetter = s1.indexOf("x");
+        
+         if(frontLetter == 0 && !s1.substring(totalLength).equals("x")){
+            return s1.substring(1,totalLength + 1);
+         }
+        if (frontLetter != 0 && s1.substring(totalLength).equals("x")){
+            return s1.substring(0,totalLength);
+        }
+        if (frontLetter == 0 && s1.substring(totalLength).equals("x")) {
+            return s1.substring(1,totalLength);
+        }
+        else{
+            return s1;
+        }
+            }
+           
+
 
     // Given a string str, if the string starts with "f" return "Fizz".
     //  If the string ends with "b" return "Buzz". If both the "f" and "b" 
@@ -58,7 +110,24 @@ public class StringProblems{
     // fizzString("dib") → "Buzz"
     // fizzString("fib") → "FizzBuzz"
     public String fizzString(String s1){
-        return "";
+        int index = s1.length() - 1;
+        int fLetter = s1.indexOf("f");
+        int bLetter = s1.indexOf("b");
+        
+        if (fLetter == 0 && bLetter == index){
+            return "FizzBuzz";
+        }
+
+        else if (fLetter == 0){
+            return "Fizz";   
+        }
+       else if (bLetter == index){
+            return "Buzz";
+        }
+
+        else{
+        return s1;
+    }
     }
 
     // Given an int n, return the string form of the number followed 
@@ -71,6 +140,22 @@ public class StringProblems{
     // fizzString2(2) → "2!"
     // fizzString2(3) → "Fizz!"
     public String fizzString2(int x){
-        return "";
+
+        
+        
+        if (x % 3 == 0 && x % 5 == 0){
+            return "FizzBuzz!";
+        } 
+        else if (x % 3 == 0 || x % 5 == 0){
+            if (x % 3 == 0){
+                return "Fizz!";
+            }
+            if (x % 5 == 0){
+                return "Buzz!";
+            }
+         }
+
+        return x + "!";
     }
 }
+
